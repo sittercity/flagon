@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'flexi-feature-flags'
+  s.name        = 'flagon'
   s.version     = '1.0.0'
   s.date        = '2014-01-16'
   s.summary     = 'A feature flag gem'
@@ -7,5 +7,5 @@ Gem::Specification.new do |s|
   s.files       = Dir['lib/**/*.rb']
   s.authors     = ['Sittercity']
   s.email       = ['dev@sittercity.com']
-  s.homepage    = 'https://git.sittercity.com/sittercity/flexi-feature-flags'
+  s.homepage    = 'https://git.sittercity.com/sittercity/flagon'
 end
