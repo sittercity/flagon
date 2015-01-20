@@ -10,13 +10,13 @@ module Flagon
       @loader = loader
     end
 
-    def check_flag(flag_name)
+    def enabled?(flag_name)
       raise FlagMissing, "The flag #{flag_name} is missing" unless exists?(flag_name)
       get_flag(flag_name)
     end
 
-    def if_enabled(flag_name)
-      if check_flag(flag_name)
+    def when_enabled(flag_name)
+      if enabled?(flag_name)
         yield
       end
     end

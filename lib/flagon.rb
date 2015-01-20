@@ -15,14 +15,14 @@ module Flagon
     end
   end
 
-  def self.check_flag(flag_name)
+  def self.enabled?(flag_name)
     check_initialized
-    @inspector.check_flag(flag_name)
+    @inspector.enabled?(flag_name)
   end
 
-  def self.if_enabled(flag_name, &block)
+  def self.when_enabled(flag_name, &block)
     check_initialized
-    @inspector.if_enabled(flag_name, &block)
+    @inspector.when_enabled(flag_name, &block)
   end
 
   class NotInitialized < Exception

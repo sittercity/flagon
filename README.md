@@ -34,3 +34,21 @@ feature_2: off
 ```
 Flagon.configure {feature_1: "on", feature_2: "off"}
 ```
+
+## Usage
+
+You can use flagon in two ways. By checking the flag directly, or by passing a block.
+
+### Checking the flag
+
+```
+profit! if Flagon.enabled?(:feature_1)
+```
+
+### Passing a block
+
+```
+Flagon.when_enabled(:feature_1) do
+  profit!
+end
+```

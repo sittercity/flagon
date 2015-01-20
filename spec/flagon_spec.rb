@@ -19,39 +19,39 @@ describe Flagon do
     expect(inspector.loader).to be_a Flagon::Loader::HashLoader
   end
 
-  context "check_flag" do
+  context "enabled?" do
     before do
       described_class.instance_variable_set(:@inspector, nil)
     end
 
     it "raises an error if flagon isn't initialized" do
-      expect{described_class.check_flag(:something)}.
+      expect{described_class.enabled?(:something)}.
         to raise_exception(described_class::NotInitialized)
     end
 
     it "calls the instance after it is initialized" do
       inspector = described_class.configure
       expect(inspector).
-        to receive(:check_flag)
-      described_class.check_flag(:something)
+        to receive(:enabled?)
+      described_class.enabled?(:something)
     end
   end
 
-  context "if_enabled" do
+  context "when_enabled" do
     before do
       described_class.instance_variable_set(:@inspector, nil)
     end
 
     it "raises an error if flagon isn't initialized" do
-      expect{ described_class.if_enabled(:something) {} }.
+      expect{ described_class.when_enabled(:something) {} }.
         to raise_exception(described_class::NotInitialized)
     end
 
     it "calls the instance after it is initialized" do
       inspector = described_class.configure
       expect(inspector).
-        to receive(:if_enabled)
-      described_class.if_enabled(:something) {}
+        to receive(:when_enabled)
+      described_class.when_enabled(:something) {}
     end
   end
 end
