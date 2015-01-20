@@ -1,9 +1,11 @@
 require 'flagon/inspector'
 require 'flagon/loader/file_loader'
+require 'flagon/loader/hash_loader'
+require 'flagon/loader/env_loader'
 
 module Flagon
   def self.configure(configuration = nil)
-    case configuration
+    @inspector = case configuration
     when String
       Inspector.new(file_loader(configuration))
     when Hash
@@ -11,6 +13,19 @@ module Flagon
     else
       Inspector.new(env_loader)
     end
+  end
+
+  def self.check_flag(flag_name)
+    check_initialized
+    @inspector.check_flag(flag_name)
+  end
+
+  def self.if_enabled(flag_name, &block)
+    check_initialized
+    @inspector.if_enabled(flag_name, &block)
+  end
+
+  class NotInitialized < Exception
   end
 
   private
@@ -25,5 +40,9 @@ module Flagon
 
   def self.env_loader
     Loader::EnvLoader.new
+  end
+
+  def self.check_initialized
+    raise NotInitialized unless @inspector
   end
 end
