@@ -3,7 +3,7 @@ module Flagon
     class EnvLoader
       def exists?(flag_name)
         key = to_key(flag_name)
-        !(ENV[key].nil? || ENV[key].empty?)
+        !ENV[key].nil?
       end
 
       def get_flag(flag_name)

@@ -1,9 +1,5 @@
-require 'forwardable'
-
 module Flagon
   class Inspector
-    extend Forwardable
-
     attr_reader :loader
 
     def initialize(loader)
@@ -26,6 +22,12 @@ module Flagon
 
     private
 
-    def_delegators :loader, :get_flag, :exists?
+    def get_flag(flag_name)
+      loader.get_flag(flag_name)
+    end
+
+    def exists?(flag_name)
+      loader.exists?(flag_name)
+    end
   end
 end

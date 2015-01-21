@@ -7,7 +7,7 @@ You can initialise flagon using either a filename, a hash of settings or nothing
 ### Using Environment Variables
 
 ```
-Flagon.configure
+Flagon.init
 ```
 
 Environment variables should be "on" or anything else to be off.
@@ -19,7 +19,7 @@ export SOME_VAR='on'
 ### Using a Yaml Settings File
 
 ```
-Flagon.configure "/path/to/settings.yaml"
+Flagon.init "/path/to/settings.yaml"
 ```
 
 The yaml file format should be single level, with values of on or off. E.g.
@@ -32,7 +32,7 @@ feature_2: off
 ### Using a Settings Hash
 
 ```
-Flagon.configure {feature_1: "on", feature_2: "off"}
+Flagon.init {feature_1: "on", feature_2: "off"}
 ```
 
 ## Usage

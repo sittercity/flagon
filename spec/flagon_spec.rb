@@ -2,19 +2,19 @@ require 'flagon'
 
 describe Flagon do
   it "returns the env inspector by default" do
-    inspector = described_class.configure
+    inspector = described_class.init
     expect(inspector).to be_a Flagon::Inspector
     expect(inspector.loader).to be_a Flagon::Loader::EnvLoader
   end
 
   it "returns the file inspector when passed a file name" do
-    inspector = described_class.configure("/a/file/path")
+    inspector = described_class.init("/a/file/path")
     expect(inspector).to be_a Flagon::Inspector
     expect(inspector.loader).to be_a Flagon::Loader::FileLoader
   end
 
   it "returns the hash inspector when passed a config hash" do
-    inspector = described_class.configure({a_flag: 'on'})
+    inspector = described_class.init({a_flag: 'on'})
     expect(inspector).to be_a Flagon::Inspector
     expect(inspector.loader).to be_a Flagon::Loader::HashLoader
   end
@@ -30,7 +30,7 @@ describe Flagon do
     end
 
     it "calls the instance after it is initialized" do
-      inspector = described_class.configure
+      inspector = described_class.init
       expect(inspector).
         to receive(:enabled?)
       described_class.enabled?(:something)
@@ -48,7 +48,7 @@ describe Flagon do
     end
 
     it "calls the instance after it is initialized" do
-      inspector = described_class.configure
+      inspector = described_class.init
       expect(inspector).
         to receive(:when_enabled)
       described_class.when_enabled(:something) {}
