@@ -52,3 +52,4 @@ Flagon.when_enabled(:feature_1) do
   profit!
 end
 ```
+
