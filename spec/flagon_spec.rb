@@ -1,22 +1,34 @@
 require 'flagon'
 
 describe Flagon do
-  it "returns the env inspector by default" do
-    inspector = described_class.init
-    expect(inspector).to be_a Flagon::Inspector
-    expect(inspector.loader).to be_a Flagon::Loader::EnvLoader
+  it "can create an env loader" do
+    loader = described_class.env_loader
+    expect(loader).to be_a Flagon::Loader::EnvLoader
   end
 
-  it "returns the file inspector when passed a file name" do
-    inspector = described_class.init("/a/file/path")
-    expect(inspector).to be_a Flagon::Inspector
-    expect(inspector.loader).to be_a Flagon::Loader::FileLoader
+  it "can create a file loader" do
+    loader = described_class.file_loader("/a/file/name")
+    expect(loader).to be_a Flagon::Loader::FileLoader
   end
 
-  it "returns the hash inspector when passed a config hash" do
-    inspector = described_class.init({a_flag: 'on'})
-    expect(inspector).to be_a Flagon::Inspector
-    expect(inspector.loader).to be_a Flagon::Loader::HashLoader
+  it "can create a hash loader" do
+    loader = described_class.hash_loader({})
+    expect(loader).to be_a Flagon::Loader::HashLoader
+  end
+
+  context "init" do
+    it "uses the env loader by default" do
+      inspector = described_class.init
+      expect(inspector).to be_a Flagon::Inspector
+      expect(inspector.loader).to be_a Flagon::Loader::EnvLoader
+    end
+
+    it "allows injection of a custom loader" do
+      loader = double(:loader)
+      inspector = described_class.init(loader)
+      expect(inspector).to be_a Flagon::Inspector
+      expect(inspector.loader).to be loader
+    end
   end
 
   context "enabled?" do
