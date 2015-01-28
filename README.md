@@ -13,13 +13,14 @@ Flagon.init
 Environment variables should be "on" or anything else to be off.
 
 ```
-export SOME_VAR='on'
+export MY_FLAG='on'
 ```
 
 ### Using a Yaml Settings File
 
 ```
-Flagon.init "/path/to/settings.yaml"
+loader = Flagon.file_loader "/path/to/settings.yaml"
+Flagon.init loader
 ```
 
 The yaml file format should be single level, with values of on or off. E.g.
@@ -32,7 +33,8 @@ feature_2: off
 ### Using a Settings Hash
 
 ```
-Flagon.init {feature_1: "on", feature_2: "off"}
+loader = Flagon.hash_loader {feature_1: "on", feature_2: "off"}
+Flagon.init loader
 ```
 
 ## Usage
@@ -53,3 +55,14 @@ Flagon.when_enabled(:feature_1) do
 end
 ```
 
+### Using the inspector directly
+
+When you call `Flagon.init` an inspector object is returned.
+The class methods above are just convenience methods that call this inspector so
+you can also use it directly if that's your cup of tea.
+
+```
+ENV['BACON'] = 'on'
+flagon = Flagon.init
+flagon.enabled?(:bacon) # => true
+```
