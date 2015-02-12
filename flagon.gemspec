@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'flagon'
   s.version     = '1.0.4'
-  s.date        = '2014-02-12'
+  s.date        = '2015-02-12'
   s.summary     = 'A feature flag gem'
   s.description = 'A gem for managing feature flags either with environemnt variables or config files'
   s.files       = Dir['lib/**/*.rb']
