@@ -1,5 +1,10 @@
 # Flagon
 
+Flagon is a storage agnostic feature flag gem.
+You can use flagon to if you have features in your program that you'd like to be able to turn
+on or off using environment variables, a yaml file, a simple hash on initialization or a custom
+storage method you create yourself and pass in.
+
 ## Initialising
 
 You can initialise flagon using either a filename, a hash of settings or nothing if you'd like it to check environment variables.
