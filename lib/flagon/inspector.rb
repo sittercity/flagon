@@ -7,7 +7,7 @@ module Flagon
     end
 
     def enabled?(flag_name)
-      raise FlagMissing, "The flag #{flag_name} is missing" unless exists?(flag_name)
+      return false unless exists?(flag_name)
       get_flag(flag_name)
     end
 
@@ -15,6 +15,13 @@ module Flagon
       if enabled?(flag_name)
         yield
       end
+    end
+
+    def ensure_flags_exist(*flags)
+      missing_flags = flags.select do |flag_name|
+        !exists?(flag_name)
+      end
+      raise FlagMissing, "The following flags are missing: #{missing_flags.join(', ')}" unless missing_flags.empty?
     end
 
     class FlagMissing < Exception
