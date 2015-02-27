@@ -79,7 +79,7 @@ describe Flagon do
 
     it "calls the instance after it is initialized" do
       inspector = described_class.init
-      expect(inspector).to receive(:ensure_flags_exist)
+      expect(inspector).to receive(:ensure_flags_exist).with(:something)
       described_class.ensure_flags_exist(:something)
     end
   end
