@@ -36,6 +36,11 @@ module Flagon
       @inspector.when_enabled(flag_name, &block)
     end
 
+    def ensure_flags_exist(*flags)
+      check_initialized
+      @inspector.ensure_flags_exist(*flags)
+    end
+
     private
 
     def check_initialized
