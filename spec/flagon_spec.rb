@@ -66,4 +66,21 @@ describe Flagon do
       described_class.when_enabled(:something) {}
     end
   end
+
+  context "ensure_flags_exist" do
+    before do
+      described_class.instance_variable_set(:@inspector, nil)
+    end
+
+    it "raises an error if flagon isn't initialized" do
+      expect{described_class.ensure_flags_exist(:something)}.
+        to raise_exception(described_class::NotInitialized)
+    end
+
+    it "calls the instance after it is initialized" do
+      inspector = described_class.init
+      expect(inspector).to receive(:ensure_flags_exist).with(:something)
+      described_class.ensure_flags_exist(:something)
+    end
+  end
 end
