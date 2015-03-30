@@ -7,7 +7,7 @@ storage method you create yourself and pass in.
 
 ## Initialising
 
-You can initialise flagon using either a filename, a hash of settings or nothing if you'd like it to check environment variables.
+You can initialize flagon using either a filename, a hash of settings or nothing if you'd like it to check environment variables.
 
 ### Using Environment Variables
 
