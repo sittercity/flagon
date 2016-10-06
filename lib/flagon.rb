@@ -5,6 +5,7 @@ require 'flagon/loader/env_loader'
 
 module Flagon
   class << self
+    attr_reader :inspector
 
     # Init method takes one of the loaders listed below or a
     # custom loader that responds to the same interface
